@@ -1,8 +1,9 @@
 require 'liquid'
+require 'cgi'
 
 def settings_panel_html(program)
   template = Liquid::Template.parse(File.read('viewer/settings_template.html'))
-  params = program.inject({}){|memo,(k,v)| memo[k.to_s] = v; memo}
+  params = program.inject({}){|memo,(k,v)| memo[k.to_s] = CGI.escapeHTML(v.to_s); memo}
   # TODO: sanitize params (e.g. > -> &gt;)
   template.render(params)
 end
