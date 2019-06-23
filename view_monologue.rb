@@ -33,8 +33,6 @@ else
   FileUtils.mkdir_p tmp_dir
   `unzip "#{file}" -d #{tmp_dir}`
 
-  # TODO: if no more arguments show all programs (use FileInformation.xml/PresetInformation.xml?)
-
   def pad(n, l=3)
     n = n.to_s
     if n.size < l
@@ -43,7 +41,14 @@ else
     n
   end
 
-  prog_files = ARGV.map{|n| File.join(tmp_dir, "Prog_#{pad(n)}.prog_bin")}
+  prog_nums = ARGV
+  if prog_nums.size == 0
+    # TODO: use FileInformation.xml/PresetInformation.xml?
+    prog_files = Dir[File.join(tmp_dir, 'Prog_*.prog_bin')].sort
+  else
+    prog_files = prog_nums.map{|n| File.join(tmp_dir, "Prog_#{pad(n)}.prog_bin")}
+  end
+
   programs = prog_files.map{|f| get_program_file_data(f)}
 
   FileUtils.rm_rf File.join(tmp_dir)
