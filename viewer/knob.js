@@ -1,8 +1,8 @@
 (function( $ ) {
   console.log('loading knob....');
-  $.fn.knob = function(params) {
-    params = $.extend($.fn.knob.defaults, params);     // override defaults with values passed to plugin
+  $.fn.knob = function(fparams) {
     return this.each(function() {
+      let params = $.extend($.fn.knob.defaults, fparams);     // override defaults with values passed to plugin
       const canvas = $(this);
       params = $.extend(params, canvas.data());  // finally override with element's data
 
