@@ -274,6 +274,11 @@ HR_PARAMS = [
   [:drive, 29, 35, 6]
 ]
 
+# TODO: eg_int, lfo_int
+# values 512-1023 are positive corresponding to knob minPos (512) to maxPos (1023)
+# values 0-511 are negative corresponding to shift+knob maxPos (0) to minPos (512)
+# represent the knob position properly + the shifted state
+
 CONV_PARAMS = [
   [:vco1_octave, 30, 4, 2, :octave],
   [:vco2_octave, 31, 4, 2, :octave],
