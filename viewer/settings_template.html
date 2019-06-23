@@ -32,7 +32,7 @@
         <span class="setting">{{vco2_wave}}</span>
       </div>
       <div class="control">
-        <span class="setting">{{vco2_sync_ring}}</span>
+        <span class="setting">{{sync_ring}}</span>
       </div>
       <div class="rot-control" data-value="{{vco2_pitch_hr}}">
         <span class="label">pitch</span>
@@ -58,13 +58,13 @@
 
   <div class="vblock" id="filter">
     <div class="block-label>">FILTER</div>
-    <div class="rot-control" data-value="{{cutoff}}">
+    <div class="rot-control" data-value="{{cutoff_hr}}">
       <span class="label">cutoff</span>
-      <canvas class="knob" data-value="{{cutoff}}" title="{{cutoff}}"></canvas>
+      <canvas class="knob" data-value="{{cutoff_hr}}" title="{{cutoff_hr}}"></canvas>
     </div>
-    <div class="rot-control" data-value="{{resonance}}">
+    <div class="rot-control" data-value="{{resonance_hr}}">
       <span class="label">resonance</span>
-      <canvas class="knob" data-value="{{resonance}}" title="{{resonance}}"></canvas>
+      <canvas class="knob" data-value="{{resonance_hr}}" title="{{resonance_hr}}"></canvas>
     </div>
   </div>
 
@@ -85,7 +85,7 @@
       </div>
       <div class="rot-control" data-value="{{eg_int_hr}}">
         <span class="label">int</span>
-        <canvas class="knob" data-value="{{eg_int_hr}}" title="{{eg_int_hr}}"></canvas>
+        <canvas class="knob" data-value="{{eg_int_hr}}" data-min-value="512" title="{{eg_int_hr}}"></canvas>
       </div>
       <div class="control" data-value="{{eg_target}}">
         <span class="label">target</span>
@@ -107,9 +107,9 @@
         <span class="label">rate</span>
         <canvas class="knob" data-value="{{lfo_rate_hr}}" title="{{lfo_rate_vis}}"></canvas>
       </div>
-      <div class="rot-control" data-value="{{lfo_int}}">
+      <div class="rot-control" data-value="{{lfo_int_hr}}">
         <span class="label">int</span>
-        <canvas class="knob" data-value="{{lfo_int}}" title="{{lfo_int}}"></canvas>
+        <canvas class="knob" data-value="{{lfo_int_hr}}" data-min-value="512" title="{{lfo_int_hr}}"></canvas>
       </div>
       <div class="control" data-value="{{lfo_target}}">
         <span class="label">target</span>
