@@ -278,7 +278,7 @@ CONV_PARAMS = [
   [:vco1_octave, 30, 4, 2, :octave],
   [:vco2_octave, 31, 4, 2, :octave],
   [:vco1_wave, 30, 6, 2, :shape1],
-  [:vco1_wave, 31, 6, 2, :shape2],
+  [:vco2_wave, 31, 6, 2, :shape2],
   [:sync_ring, 32, 0, 2, :sync_ring],
   [:keyb_octave, 32, 2, 3, :keyb_octave],
   [:eg_type, 34, 0, 2, :eg_type],
