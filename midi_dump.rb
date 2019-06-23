@@ -20,7 +20,7 @@ def is_sysrt(byte)
 end
 
 def filter_sysrt(bytes)
-  bytes.reject{|b| is_sisrt(byte)}
+  bytes.reject{|b| is_sysrt(b)}
 end
 
 SYSEX_START = 0xF0
@@ -31,13 +31,13 @@ def wait_sysex_response(input)
   r = []
   # UniMIDI behaviour is weird when using gets: after separate parts of
   # a long message, the whole sysex message appears; segfault can occur occasionally too
-  while r.size == 0 || r.last.last != 0xF7
+  while r.size == 0 || r.last&.last != 0xF7
     d = responses(input)
     if d.size > 0
       r += d
       d.each do |part|
         if part.first == SYSEX_START && part.last == SYSEX_EDN
-          r = part
+          r = [part]
           break
         end
       end

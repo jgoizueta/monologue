@@ -19,14 +19,13 @@ if file == 'midi'
     UniMIDI::Output.all.select{|i| i.name == 'KORG INC. monologue'}.last.open do |output|
       if prog_nums.size == 0
         # Current Program
-        programs = [current_program(input, output)]
+        programs = [get_program_midi_data(current_program(input, output))]
       else
-        programs = prog_nums.map{|p| program(p, input, output)}
+        programs = prog_nums.map{|p| get_program_midi_data program(p, input, output)}
       end
     end
   end
 
-  view *progs.map{|p| parse_program p}
 
 else
   tmp_dir = 'molg_tmp'
@@ -54,4 +53,5 @@ else
   FileUtils.rm_rf File.join(tmp_dir)
 end
 
+puts programs.inspect
 view *programs.map{|program| parse_program program}
