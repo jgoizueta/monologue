@@ -304,7 +304,7 @@ CONV_PARAMS = [
 ]
 
 def bits(byte, pos, len)
-  (byte >> pos) & ((1 << (len - 1)) - 1)
+  (byte >> pos) & ((1 << len) - 1)
 end
 
 # Parse program data dump
