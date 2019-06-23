@@ -1,0 +1,214 @@
+<H1>{{name}}</H1>
+<div class="panel">
+  <div class="vblock" id="vco1">
+    <div class="block-label>">VCO1</div>
+    <div class="control">
+      <span class="label">wave</span>
+      <span class="setting">{{vco1_wave}}</span>
+    </div>
+    <div class="rot-control" data-value="{{vco1_shape_hr}}">
+        <span class="label">shape</span>
+        <canvas class="knob" data-value="{{vco1_shape_hr}}" title="{{vco1_shape_hr}}"></canvas>
+    </div>
+    <div class="hidden-control">
+      <span class="label">pitch</span>
+      <span class="setting">{{voc1_pitch_hr}}</span>
+      <span class="setting">{{voc1_pitch_cents}}c</span>
+    </div>
+    <div class="hidden-control">
+      <span class="label">octave</span>
+      <span class="setting">{{voc1_octave}}</span>
+    </div>
+  </div>
+
+  <div class="vblock" id="vco2">
+      <div class="block-label>">VCO2</div>
+      <div class="control">
+        <span class="label">octave</span>
+        <span class="setting">{{vco2_octave}}</span>
+      </div>
+      <div class="control">
+        <span class="label">wave</span>
+        <span class="setting">{{vco2_wave}}</span>
+      </div>
+      <div class="control">
+        <span class="setting">{{vco2_sync_ring}}</span>
+      </div>
+      <div class="rot-control" data-value="{{vco2_pitch_hr}}">
+        <span class="label">pitch</span>
+        <canvas class="knob" data-value="{{vco2_pitch_hr}}" title="{{vco2_pitch_cents}}c"></canvas>
+      </div>
+      <div class="rot-control" data-value="{{vco2_shape_hr}}">
+        <span class="label">shape</span>
+        <canvas class="knob" data-value="{{vco2_shape_hr}}" title="{{vco2_shape_hr}}c"></canvas>
+      </div>
+  </div>
+
+  <div class="vblock" id="mixer">
+    <div class="block-label>">MIXER</div>
+    <div class="rot-control" data-value="{{vco1_level_hr}}">
+      <span class="label">vc01</span>
+      <canvas class="knob" data-value="{{vco1_level_hr}}" title="{{vco1_level_hr}}"></canvas>
+    </div>
+    <div class="rot-control" data-value="{{vco2_level_hr}}">
+      <span class="label">vc02</span>
+      <canvas class="knob" data-value="{{vco2_level_hr}}" title="{{vco2_level_hr}}"></canvas>
+    </div>
+  </div>
+
+  <div class="vblock" id="filter">
+    <div class="block-label>">FILTER</div>
+    <div class="rot-control" data-value="{{cutoff}}">
+      <span class="label">cutoff</span>
+      <canvas class="knob" data-value="{{cutoff}}" title="{{cutoff}}"></canvas>
+    </div>
+    <div class="rot-control" data-value="{{resonance}}">
+      <span class="label">resonance</span>
+      <canvas class="knob" data-value="{{resonance}}" title="{{resonance}}"></canvas>
+    </div>
+  </div>
+
+  <div class="vblock">
+    <div class="block-label>">EG</div>
+    <div class="hblock" id="EG">
+      <div class="control" data-value="{{eg_type}}">
+        <span class="label">type</span>
+        <span class="setting">{{eg_type}}</span>
+      </div>
+      <div class="rot-control" data-value="{{eg_attack_hr}}">
+        <span class="label">attack</span>
+        <canvas class="knob" data-value="{{eg_attack_hr}}" title="{{eg_attack_hr}}"></canvas>
+      </div>
+      <div class="rot-control" data-value="{{eg_decay_hr}}">
+        <span class="label">decay</span>
+        <canvas class="knob" data-value="{{eg_decay_hr}}" title="{{eg_decay_hr}}"></canvas>
+      </div>
+      <div class="rot-control" data-value="{{eg_int_hr}}">
+        <span class="label">int</span>
+        <canvas class="knob" data-value="{{eg_int_hr}}" title="{{eg_int_hr}}"></canvas>
+      </div>
+      <div class="control" data-value="{{eg_target}}">
+        <span class="label">target</span>
+        <span class="setting">{{eg_target}}</span>
+      </div>
+    </div>
+
+    <div class="block-label>">LFO</div>
+    <div class="hblock" id="LFO">
+      <div class="control" data-value="{{lfo_type}}">
+        <span class="label">type</span>
+        <span class="setting">{{lfo_type}}</span>
+      </div>
+      <div class="control" data-value="{{lfo_mode}}">
+        <span class="label">mode</span>
+        <span class="setting">{{lfo_mode}}</span>
+      </div>
+      <div class="rot-control" data-value="{{lfo_rate_hr}}">
+        <span class="label">rate</span>
+        <canvas class="knob" data-value="{{lfo_rate_hr}}" title="{{lfo_rate_vis}}"></canvas>
+      </div>
+      <div class="rot-control" data-value="{{lfo_int}}">
+        <span class="label">int</span>
+        <canvas class="knob" data-value="{{lfo_int}}" title="{{lfo_int}}"></canvas>
+      </div>
+      <div class="control" data-value="{{lfo_target}}">
+        <span class="label">target</span>
+        <span class="setting">{{lfo_target}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="vblock" id="master">
+    <div class="menu-control">
+      <span class="label">program_level</span>
+      <span class="setting">{{program_level}}</span>
+    </div>
+    <div class="rot-control" data-value="{{drive_hr}}">
+        <span class="label">drive</span>
+        <canvas class="knob" data-value="{{drive_hr}}" title="{{drive_hr}}"></canvas>
+    </div>
+    <div class="control">
+      <span class="label">octave</span>
+      <span class="setting">{{keyb_octave}}</span>
+    </div>
+  </div>
+
+  <div class="vblock">
+    <div class="control" data-value="{{seq_trig}}">
+      <span class="label">sequencer</span>
+      <span class="setting">{{seq_trig}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="menu-settings">
+  <div class="menu-column">
+    <div class="menu-item">
+      <span class="label">portamento time</span>
+      <span class="setting">{{portament_time}}</span>
+    </div>
+    <div class="menu-item">
+        <span class="label">portamento mode</span>
+        <span class="setting">{{portament_mode}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">slide time</span>
+      <span class="setting">{{slide_time}}</span>
+    </div>
+  </div>
+
+  <div class="menu-column">
+    <div class="menu-item">
+      <span class="label">slider assign</span>
+      <span class="setting">{{slider_assign}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">bend range +</span>
+      <span class="setting">{{bend_range_pos}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">bend range -</span>
+      <span class="setting">{{bend_range_neg}}</span>
+    </div>
+  </div>
+
+  <div class="menu-column">
+    <div class="menu-item">
+      <span class="label">micro tuning</span>
+      <span class="setting">{{micro_tuning}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">scale key</span>
+      <span class="setting">{{scale_key}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">program tuning</span>
+      <span class="setting">{{program_tuning}}</span>
+    </div>
+  </div>
+
+  <div class="menu-column">
+    <div class="menu-item">
+      <span class="label">lfo bpm sync</span>
+      <span class="setting">{{lfo_bpm_sync}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">cutoff keytrack</span>
+      <span class="setting">{{cutoff_keytrack}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">cutoff velocity</span>
+      <span class="setting">{{cutoff_velocity}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">amp velocity</span>
+      <span class="setting">{{amp_velocity}}</span>
+    </div>
+    <div class="menu-item">
+      <span class="label">program level</span>
+      <span class="setting">{{program_level}}</span>
+    </div>
+  </div>
+</div>

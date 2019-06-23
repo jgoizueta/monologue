@@ -1,0 +1,50 @@
+html {
+  font-family: sans-serif;
+  font-size: 0.8em;
+}
+.panel {
+  display: flex;
+  flex-direction: row;
+}
+.vblock {
+  border: solid 3px;
+  display: flex;
+  flex-direction: column;
+  margin: 0.2em;
+  padding: 0.2em;
+}
+.hblock {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-settings {
+  display: flex;
+  flex-direction: row;
+}
+.menu-column {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  border: solid 3px white;
+  background-color: #ff8080;
+}
+.label {
+  font-size: 0.6em;
+}
+.block-label {
+  font-size: 0.9em;
+}
+.knob {
+     width: 35px; height: 35px;
+  }
+.hidden-control {
+  color: #909090;
+}
+.rot-control {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.rot-control .label {
+  /* align-self: center; */
+}

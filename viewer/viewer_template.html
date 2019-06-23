@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="viewer.css">
+    <script type='text/javascript' src="jquery-2.2.4.min.js"></script>
+    <script type='text/javascript' src="knob.js"></script>
+    <script>
+      $(function() {
+        $('.knob').knob({
+          minPos: -150,
+          maxPos: 150,
+          minValue: 0,
+          maxValue: 1024
+        });
+      });
+    </script>
+  </head>
+<body>
+  {{settings}}
+</body>
+</html>
