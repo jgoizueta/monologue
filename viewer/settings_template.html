@@ -1,10 +1,10 @@
-<H1>{{name}}</H1>
+<H1>{{name | escape}}</H1>
 <div class="panel">
   <div class="vblock" id="vco1">
     <div class="block-label>">VCO1</div>
     <div class="control">
       <span class="label">wave</span>
-      <span class="setting">{{vco1_wave}}</span>
+      <span class="setting">{{vco1_wave | escape}}</span>
     </div>
     <div class="rot-control" data-value="{{vco1_shape_hr}}">
         <span class="label">shape</span>
@@ -17,7 +17,7 @@
     </div>
     <div class="hidden-control">
       <span class="label">octave</span>
-      <span class="setting">{{voc1_octave}}</span>
+      <span class="setting">{{voc1_octave | escape}}</span>
     </div>
   </div>
 
@@ -25,15 +25,17 @@
       <div class="block-label>">VCO2</div>
       <div class="control">
         <span class="label">octave</span>
-        <span class="setting">{{vco2_octave}}</span>
+        <span class="setting">{{vco2_octave | escape}}</span>
       </div>
       <div class="control">
         <span class="label">wave</span>
-        <span class="setting">{{vco2_wave}}</span>
+        <span class="setting">{{vco2_wave | escape}}</span>
       </div>
+      {% if sync_ring != 'OFF' %}
       <div class="control">
-        <span class="setting">{{sync_ring}}</span>
+        <span class="setting">{{sync_ring | escape}}</span>
       </div>
+      {% endif sync_ring != 'OFF' %}
       <div class="rot-control" data-value="{{vco2_pitch_hr}}">
         <span class="label">pitch</span>
         <canvas class="knob" data-value="{{vco2_pitch_hr}}" title="{{vco2_pitch_cents}}c"></canvas>
@@ -73,7 +75,7 @@
     <div class="hblock" id="EG">
       <div class="control" data-value="{{eg_type}}">
         <span class="label">type</span>
-        <span class="setting">{{eg_type}}</span>
+        <span class="setting">{{eg_type | escape}}</span>
       </div>
       <div class="rot-control" data-value="{{eg_attack_hr}}">
         <span class="label">attack</span>
@@ -89,7 +91,7 @@
       </div>
       <div class="control" data-value="{{eg_target}}">
         <span class="label">target</span>
-        <span class="setting">{{eg_target}}</span>
+        <span class="setting">{{eg_target | escape}}</span>
       </div>
     </div>
 
@@ -97,11 +99,11 @@
     <div class="hblock" id="LFO">
       <div class="control" data-value="{{lfo_type}}">
         <span class="label">type</span>
-        <span class="setting">{{lfo_type}}</span>
+        <span class="setting">{{lfo_type | escape}}</span>
       </div>
       <div class="control" data-value="{{lfo_mode}}">
         <span class="label">mode</span>
-        <span class="setting">{{lfo_mode}}</span>
+        <span class="setting">{{lfo_mode | escape}}</span>
       </div>
       <div class="rot-control" data-value="{{lfo_rate_hr}}">
         <span class="label">rate</span>
@@ -113,7 +115,7 @@
       </div>
       <div class="control" data-value="{{lfo_target}}">
         <span class="label">target</span>
-        <span class="setting">{{lfo_target}}</span>
+        <span class="setting">{{lfo_target | escape}}</span>
       </div>
     </div>
   </div>
@@ -131,14 +133,14 @@
     </div>
     <div class="control">
       <span class="label">octave</span>
-      <span class="setting">{{keyb_octave}}</span>
+      <span class="setting">{{keyb_octave | escape}}</span>
     </div>
   </div>
 
   <div class="vblock">
     <div class="control" data-value="{{seq_trig}}">
       <span class="label">key trg</span>
-      <span class="setting">{{seq_trig}}</span>
+      <span class="setting">{{seq_trig | escape}}</span>
     </div>
   </div>
 </div>
@@ -185,14 +187,14 @@
     </div>
     <div class="menu-item">
       <span class="label">program tuning</span>
-      <span class="setting">{{program_tuning}}</span>
+      <span class="setting">{{program_tuning | escape}}</span>
     </div>
   </div>
 
   <div class="menu-column">
     <div class="menu-item">
       <span class="label">lfo bpm sync</span>
-      <span class="setting">{{lfo_bpm_sync}}</span>
+      <span class="setting">{{lfo_bpm_sync | escape}}</span>
     </div>
     <div class="menu-item">
       <span class="label">cutoff keytrack</span>
