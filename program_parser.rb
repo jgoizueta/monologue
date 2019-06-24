@@ -86,22 +86,23 @@ end
 
 CONVERTERS = {
   cents: ->(value) {
+    # TODO: adjust: this doesn't seem to be really piece-wise linear
     if value < 4
       -1200
-    elsif value < 356
-      -1200 + ((value - 4)*(1200-256)/(356.0-4)).round
-    elsif value < 476
-      -256 + ((value - 356)*(256-16)/(476.0-356)).round
+    elsif value < 306
+      -1200 + ((value - 4)*(1200-256)/(306.0-4)).round
+    elsif value < 463
+      -256 + ((value - 306)*(256-16)/(463.0-356)).round
     elsif value < 492
-      -16 + (value - 476)
+      -16 + ((value - 463)*(256-16)/(463.0-356)).round
     elsif value < 532
       0
-    elsif value < 548
-      value - 532
-    elsif value < 668
-      16 + ((value - 548)*(256-16)/(668.0-548)).round
+    elsif value < 561
+      ((value - 532)*(16)/(564.0-532)).round
+    elsif value < 718
+      16 + ((value - 564)*(256-16)/(718.0-564)).round
     elsif value < 1020
-      256 + ((value - 668)*(1200-256)/(1020.0-668)).round
+      256 + ((value - 718)*(1200-256)/(1020.0-718)).round
     else
       1200
     end
