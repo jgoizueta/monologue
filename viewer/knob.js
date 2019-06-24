@@ -24,11 +24,11 @@
       const cy = total_height / 2;
 
       // Background
-      context.fillStyle = params.colors.background;
+      context.fillStyle = params.colorBackground;
       context.fillRect(0, 0, total_width, total_height);
 
       context.lineWidth = 2;
-      context.strokeStyle = params.colors.lines;
+      context.strokeStyle = params.color;
       context.beginPath();
       context.arc(cx, cy, r, 0, 2 * Math.PI);
       context.stroke();
@@ -57,11 +57,11 @@
         context.stroke();
       }
 
-      marker(0, params.colors.dim, r+2, r+4);
-      marker(1, params.colors.dim, r+2, r+4);
+      marker(0, params.colorDim, r+2, r+4);
+      marker(1, params.colorDim, r+2, r+4);
 
       const fraction = (params.value - params.minValue) / (params.maxValue - params.minValue);
-      marker(fraction, params.colors.lines);
+      marker(fraction, params.color);
 
       console.log(params);
       return this;
@@ -75,10 +75,8 @@
     maxPos: 180,
     margin: 4,
     refPos: 90, // positions relatie to top
-    colors: {
-      background: "#FFFFFF",
-      lines: '#202020',
-      dim: '#A0A0A0'
-    }
+    color: '#202020',
+    colorBackground: "#FFFFFF",
+    colorDim: '#A0A0A0'
   };
 })( jQuery );

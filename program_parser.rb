@@ -255,6 +255,7 @@ CONVERTERS = {
     2 => '100%'
   },
   program_level: ->(v) { v - 77 - 25 },
+  signed: ->(v) { v - 512 }
 }
 
 HR_PARAMS = [
@@ -268,9 +269,9 @@ HR_PARAMS = [
   [:resonance, 23, 33, 6],
   [:eg_attack, 24, 34, 2],
   [:eg_decay, 25, 34, 4],
-  [:eg_int, 26, 35, 0],
+  [:eg_int, 26, 35, 0, :signed],
   [:lfo_rate, 27, 35, 2, :bpm],
-  [:lfo_int, 28, 35, 4],
+  [:lfo_int, 28, 35, 4, :signed],
   [:drive, 29, 35, 6]
 ]
 
@@ -338,6 +339,8 @@ def parse_program(prog)
   end
 
   data[:lfo_rate_vis] = data[:lfo_bpm_sync] == 'ON' ? data[:lfo_rate_bpm] : data[:lfo_rate_hr]
+  data[:eg_int_abs] = data[:eg_int_signed].abs
+  data[:lfo_int_abs] = data[:lfo_int_signed].abs
 
   data
 end

@@ -87,7 +87,17 @@
       </div>
       <div class="rot-control" data-value="{{eg_int_hr}}">
         <span class="label">int</span>
-        <canvas class="knob" data-value="{{eg_int_hr}}" data-min-value="512" title="{{eg_int_hr}}"></canvas>
+        {% if eg_int_signed < 0 %}
+        <canvas class="knob" data-value="{{eg_int_hr}}" data-min-value="511" data-max-value="0"  data-color="red" title="{{eg_int_signed}}"></canvas>
+        <!--
+        <canvas class="knob" data-value="{{eg_int_abs}}" data-max-value="511"  data-color="red" title="{{eg_int_signed}}"></canvas>
+        -->
+        {% else %}
+        <canvas class="knob" data-value="{{eg_int_hr}}" data-min-value="512" data-max-value="1023"  title="{{eg_int_signed}}"></canvas>
+        <!--
+        <canvas class="knob" data-value="{{eg_int_abs}}" data-max-value="511" title="{{eg_int_signed}}"></canvas>
+        -->
+        {% endif %}
       </div>
       <div class="control" data-value="{{eg_target}}">
         <span class="label">target</span>
