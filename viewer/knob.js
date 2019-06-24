@@ -2,9 +2,8 @@
   console.log('loading knob....');
   $.fn.knob = function(fparams) {
     return this.each(function() {
-      let params = $.extend($.fn.knob.defaults, fparams);     // override defaults with values passed to plugin
       const canvas = $(this);
-      params = $.extend(params, canvas.data());  // finally override with element's data
+      const params = $.extend({}, $.fn.knob.defaults, fparams, canvas.data());
 
       // @height(), @width() corresponds to the CSS height & width of the canvas element
       // this.height, this.width are the attributes of the HTML element (<canvas width="..." height="...")
