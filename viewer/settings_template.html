@@ -8,7 +8,7 @@
     </div>
     <div class="rot-control" data-value="{{vco1_shape_hr}}">
         <span class="label">shape</span>
-        <canvas class="knob" data-value="{{vco1_shape_hr}}" title="{{vco1_shape_hr}}"></canvas>
+        <synth-knob value="{{vco1_shape_hr}}" title="{{vco1_shape_hr}}"></synth-knob>
     </div>
     <div class="hidden-control">
       <span class="label">pitch</span>
@@ -38,11 +38,11 @@
       {% endif sync_ring != 'OFF' %}
       <div class="rot-control" data-value="{{vco2_pitch_hr}}">
         <span class="label">pitch</span>
-        <canvas class="knob" data-value="{{vco2_pitch_hr}}" title="{{vco2_pitch_cents}}c"></canvas>
+        <synth-knob value="{{vco2_pitch_hr}}" title="{{vco2_pitch_cents}}c"></synth-knob>
       </div>
       <div class="rot-control" data-value="{{vco2_shape_hr}}">
         <span class="label">shape</span>
-        <canvas class="knob" data-value="{{vco2_shape_hr}}" title="{{vco2_shape_hr}}"></canvas>
+        <synth-knob value="{{vco2_shape_hr}}" title="{{vco2_shape_hr}}"></synth-knob>
       </div>
   </div>
 
@@ -50,11 +50,11 @@
     <div class="block-label>">MIXER</div>
     <div class="rot-control" data-value="{{vco1_level_hr}}">
       <span class="label">vc01</span>
-      <canvas class="knob" data-value="{{vco1_level_hr}}" title="{{vco1_level_hr}}"></canvas>
+      <synth-knob value="{{vco1_level_hr}}" title="{{vco1_level_hr}}"></synth-knob>
     </div>
     <div class="rot-control" data-value="{{vco2_level_hr}}">
       <span class="label">vc02</span>
-      <canvas class="knob" data-value="{{vco2_level_hr}}" title="{{vco2_level_hr}}"></canvas>
+      <synth-knob value="{{vco2_level_hr}}" title="{{vco2_level_hr}}"></synth-knob>
     </div>
   </div>
 
@@ -62,11 +62,11 @@
     <div class="block-label>">FILTER</div>
     <div class="rot-control" data-value="{{cutoff_hr}}">
       <span class="label">cutoff</span>
-      <canvas class="knob" data-value="{{cutoff_hr}}" title="{{cutoff_hr}}"></canvas>
+      <synth-knob value="{{cutoff_hr}}" title="{{cutoff_hr}}"></synth-knob>
     </div>
     <div class="rot-control" data-value="{{resonance_hr}}">
       <span class="label">resonance</span>
-      <canvas class="knob" data-value="{{resonance_hr}}" title="{{resonance_hr}}"></canvas>
+      <synth-knob value="{{resonance_hr}}" title="{{resonance_hr}}"></synth-knob>
     </div>
   </div>
 
@@ -79,23 +79,23 @@
       </div>
       <div class="rot-control" data-value="{{eg_attack_hr}}">
         <span class="label">attack</span>
-        <canvas class="knob" data-value="{{eg_attack_hr}}" title="{{eg_attack_hr}}"></canvas>
+        <synth-knob value="{{eg_attack_hr}}" title="{{eg_attack_hr}}"></synth-knob>
       </div>
       <div class="rot-control" data-value="{{eg_decay_hr}}">
         <span class="label">decay</span>
-        <canvas class="knob" data-value="{{eg_decay_hr}}" title="{{eg_decay_hr}}"></canvas>
+        <synth-knob value="{{eg_decay_hr}}" title="{{eg_decay_hr}}"></synth-knob>
       </div>
       <div class="rot-control" data-value="{{eg_int_hr}}">
         <span class="label">int</span>
         {% if eg_int_signed < 0 %}
-        <canvas class="knob" data-value="{{eg_int_hr}}" data-min-value="511" data-max-value="0"  data-color="red" title="{{eg_int_signed}}"></canvas>
+        <synth-knob value="{{eg_int_hr}}" min-value="511" max-value="0"  class="shifted" title="{{eg_int_signed}}"></synth-knob>
         <!--
-        <canvas class="knob" data-value="{{eg_int_abs}}" data-max-value="511"  data-color="red" title="{{eg_int_signed}}"></canvas>
+        <synth-knob value="{{eg_int_abs}}" max-value="511" class="shifted" title="{{eg_int_signed}}"></synth-knob>
         -->
         {% else %}
-        <canvas class="knob" data-value="{{eg_int_hr}}" data-min-value="512" data-max-value="1023"  title="{{eg_int_signed}}"></canvas>
+        <synth-knob value="{{eg_int_hr}}" min-value="512" max-value="1023"  title="{{eg_int_signed}}"></synth-knob>
         <!--
-        <canvas class="knob" data-value="{{eg_int_abs}}" data-max-value="511" title="{{eg_int_signed}}"></canvas>
+        <synth-knob value="{{eg_int_abs}}" max-value="511" title="{{eg_int_signed}}"></synth-knob>
         -->
         {% endif %}
       </div>
@@ -117,19 +117,19 @@
       </div>
       <div class="rot-control" data-value="{{lfo_rate_hr}}">
         <span class="label">rate</span>
-        <canvas class="knob" data-value="{{lfo_rate_hr}}" title="{{lfo_rate_vis}}"></canvas>
+        <synth-knob value="{{lfo_rate_hr}}" title="{{lfo_rate_vis}}"></synth-knob>
       </div>
       <div class="rot-control" data-value="{{lfo_int_hr}}">
         <span class="label">int</span>
-        {% if eg_int_signed < 0 %}
-        <canvas class="knob" data-value="{{lfo_int_hr}}" data-min-value="511" data-max-value="0"  data-color="red" title="{{lfo_int_signed}}"></canvas>
+        {% if lfo_int_signed < 0 %}
+        <synth-knob value="{{lfo_int_hr}}" min-value="511" max-value="0" class="shifted" title="{{lfo_int_signed}}"></synth-knob>
         <!--
-        <canvas class="knob" data-value="{{lfo_int_abs}}" data-max-value="511"  data-color="red" title="{{lfo_int_signed}}"></canvas>
+          <synth-knob value="{{lfo_int_abs}}" max-value="511" class="shifted" title="{{lfo_int_signed}}"></synth-knob>
         -->
         {% else %}
-        <canvas class="knob" data-value="{{lfo_int_hr}}" data-min-value="512" data-max-value="1023"  title="{{lfo_int_signed}}"></canvas>
+        <synth-knob value="{{lfo_int_hr}}" min-value="512" max-value="1023" title="{{lfo_int_signed}}"></synth-knob>
         <!--
-        <canvas class="knob" data-value="{{lfo_int_abs}}" data-max-value="511" title="{{lfo_int_signed}}"></canvas>
+        <synth-knob value="{{lfo_int_abs}}" max-value="511" title="{{lfo_int_signed}}"></synth-knob>
         -->
         {% endif %}
       </div>
@@ -149,7 +149,7 @@
     </div>
     <div class="rot-control" data-value="{{drive_hr}}">
         <span class="label">drive</span>
-        <canvas class="knob" data-value="{{drive_hr}}" title="{{drive_hr}}"></canvas>
+        <synth-knob value="{{drive_hr}}" title="{{drive_hr}}"></synth-knob>
     </div>
     <div class="control">
       <span class="label">octave</span>

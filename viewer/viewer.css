@@ -35,9 +35,6 @@ html {
 .block-label {
   font-size: 0.9em;
 }
-.knob {
-     width: 35px; height: 35px;
-  }
 .hidden-control {
   color: #909090;
 }
@@ -47,4 +44,12 @@ html {
 }
 .rot-control .label {
   /* align-self: center; */
+}
+synth-knob {
+  width: 35px; height: 35px;
+  color: #202020;
+  border-color: #b0b0b0;
+}
+synth-knob.shifted {
+  color: red;
 }

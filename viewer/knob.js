@@ -1,82 +1,126 @@
-(function( $ ) {
-  console.log('loading knob....');
-  $.fn.knob = function(fparams) {
-    return this.each(function() {
-      const canvas = $(this);
-      const params = $.extend({}, $.fn.knob.defaults, fparams, canvas.data());
+const PROPERTIES = {
+  'value': ['value', parseFloat],
+  'min-value': ['minValue', parseFloat],
+  'max-value': ['maxValue', parseFloat],
+  'min-pos': ['minPos', parseFloat],
+  'max-pos': ['maxPos', parseFloat],
+  'margin': ['margin', parseFloat],
+  'ref-pos': ['refPos', parseFloat],
+  'color': ['color', String],
+  'color-background': ['colorBackground', String],
+  'color-dim': ['colorDim', String],
+};
 
-      // @height(), @width() corresponds to the CSS height & width of the canvas element
-      // this.height, this.width are the attributes of the HTML element (<canvas width="..." height="...")
-      // The latter define the coordinate system of the canvas
-      // To avoid having to set the HTML attributes (and use only the CSS properties) we will copy:
-      this.width = canvas.width();
-      this.height = canvas.height();
+class Knob extends HTMLElement {
+  static get observedAttributes() {
+    return Object.keys(PROPERTIES);
+  }
 
-      const total_width = canvas.width();
-      const total_height = canvas.height();
-      const width = total_width - 2*params.margin;
-      const height = total_height - 2*params.margin;
+  static get defaultAttributeValues() {
+      return {
+          value: undefined,
+          minValue: 0,
+          maxValue: 1023,
+          minPos: -150,
+          maxPos: 150,
+          margin: 4,
+          refPos: 90, // positions relative to top
+          color: '#202020',
+          colorBackground: "#FFFFFF",
+          colorDim: '#A0A0A0'
+      };
+  }
 
-      const context = this.getContext("2d");
+  constructor() {
+    super();
+    this.enabled = false;
+    const shadow = this.attachShadow({mode: 'open'});
+    const canvas = document.createElement('canvas');
+    shadow.appendChild(canvas);
+    this.canvas = canvas;
+    this.params = Object.assign({}, Knob.defaultAttributeValues);
+  }
 
-      const r = Math.min(width, height) / 2;
-      const cx = total_width / 2;
-      const cy = total_height / 2;
+  connectedCallback() {
+    this.enabled = true;
+    render(this);
+  }
 
-      // Background
-      context.fillStyle = params.colorBackground;
-      context.fillRect(0, 0, total_width, total_height);
+  attributeChangedCallback(name, oldValue, newValue) {
+    const [prop, conv] = PROPERTIES[name];
+    this.params[prop] = conv(newValue);
+    render(this);
+  }
+}
 
-      context.lineWidth = 2;
-      context.strokeStyle = params.color;
-      context.beginPath();
-      context.arc(cx, cy, r, 0, 2 * Math.PI);
-      context.stroke();
+customElements.define('synth-knob', Knob);
 
-      const posAngle = (pos) => {
-        return (params.refPos - pos)*Math.PI/180;
-      }
+function render(elem) {
+  if (!elem.enabled) {
+      return;
+  }
+  console.log('RENDER');
+  // const canvas = elem.getElementsByTagName('canvas')[0];
+  const canvas = elem.canvas;
+  canvas.width  = parseFloat(window.getComputedStyle(elem).width);
+  canvas.height = parseFloat(window.getComputedStyle(elem).height);
 
-      const fractionAngle = (fraction) => {
-        const pos = params.minPos + fraction*(params.maxPos - params.minPos);
-        return posAngle(pos);
-      }
+  const params = elem.params;
+  console.log(params);
 
-      const radPnt = (angle, r) => {
-        return [cx + r*Math.cos(angle), total_height - cy - r*Math.sin(angle)];
-      }
+  const total_width = canvas.width;
+  const total_height = canvas.height;
+  console.log('size',total_width, total_height);
+  const width = total_width - 2*params.margin;
+  const height = total_height - 2*params.margin;
 
-      const marker = (fraction, color, r1 = 0, r2 = r) => {
-        const angle = fractionAngle(fraction);
-        const [x1, y1] = radPnt(angle, r1);
-        const [x2, y2] = radPnt(angle, r2);
-        context.strokeStyle = color;
-        context.beginPath();
-        context.moveTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.stroke();
-      }
+  const context = canvas.getContext("2d");
 
-      marker(0, params.colorDim, r+2, r+4);
-      marker(1, params.colorDim, r+2, r+4);
+  const r = Math.min(width, height) / 2;
+  const cx = total_width / 2;
+  const cy = total_height / 2;
 
-      const fraction = (params.value - params.minValue) / (params.maxValue - params.minValue);
-      marker(fraction, params.color);
+  // Background
+  // console.log('back', params.colorBackground);
+  // context.fillStyle = params.colorBackground;
+  // context.fillRect(0, 0, total_width, total_height);
 
-      console.log(params);
-      return this;
-    });
-  };
+  const color = window.getComputedStyle(elem).color || params.color;
+  const markColor = window.getComputedStyle(elem).borderColor || params.colorDim;
 
-  $.fn.knob.defaults = {
-    minValue: 0,
-    maxValue: 100,
-    minPos: -180,
-    maxPos: 180,
-    margin: 4,
-    refPos: 90, // positions relatie to top
-    color: '#202020',
-    colorBackground: "#FFFFFF",
-    colorDim: '#A0A0A0'
-  };
-})( jQuery );
+  context.lineWidth = 2;
+  context.strokeStyle = color;
+  context.beginPath();
+  context.arc(cx, cy, r, 0, 2 * Math.PI);
+  context.stroke();
+
+  const posAngle = (pos) => {
+    return (params.refPos - pos)*Math.PI/180;
+  }
+
+  const fractionAngle = (fraction) => {
+    const pos = params.minPos + fraction*(params.maxPos - params.minPos);
+    return posAngle(pos);
+  }
+
+  const radPnt = (angle, r) => {
+    return [cx + r*Math.cos(angle), total_height - cy - r*Math.sin(angle)];
+  }
+
+  const marker = (fraction, color, r1 = 0, r2 = r) => {
+    const angle = fractionAngle(fraction);
+    const [x1, y1] = radPnt(angle, r1);
+    const [x2, y2] = radPnt(angle, r2);
+    context.strokeStyle = color;
+    context.beginPath();
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.stroke();
+  }
+
+  marker(0, markColor, r+3, r+5);
+  marker(1, markColor, r+3, r+5);
+
+  const fraction = (params.value - params.minValue) / (params.maxValue - params.minValue);
+  marker(fraction, color);
+}
