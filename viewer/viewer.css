@@ -46,6 +46,7 @@ h1 {
 }
 .block-label {
   font-size: 0.9em;
+  font-weight: bold;
 }
 .control {
   padding: 0.3em;

@@ -2,7 +2,7 @@
 <H1>{{name | escape}}</H1>
 <div class="panel">
   <div class="vblock" id="vco1">
-    <div class="block-label>">VCO1</div>
+    <div class="block-label>VCO1</div>
     <div class="control">
       <span class="label">wave</span>
       <span class="setting">{{vco1_wave | escape}}</span>
@@ -23,7 +23,7 @@
   </div>
 
   <div class="vblock" id="vco2">
-      <div class="block-label>">VCO2</div>
+      <div class="block-label">VCO2</div>
       <div class="control">
         <span class="label">octave</span>
         <span class="setting">{{vco2_octave | escape}}</span>
@@ -48,7 +48,7 @@
   </div>
 
   <div class="vblock" id="mixer">
-    <div class="block-label>">MIXER</div>
+    <div class="block-label">MIXER</div>
     <div class="rot-control" data-value="{{vco1_level_hr}}">
       <span class="label">vc01</span>
       <synth-knob value="{{vco1_level_hr}}" title="{{vco1_level_hr}}"></synth-knob>
@@ -60,7 +60,7 @@
   </div>
 
   <div class="vblock" id="filter">
-    <div class="block-label>">FILTER</div>
+    <div class="block-label">FILTER</div>
     <div class="rot-control" data-value="{{cutoff_hr}}">
       <span class="label">cutoff</span>
       <synth-knob value="{{cutoff_hr}}" title="{{cutoff_hr}}"></synth-knob>
@@ -72,7 +72,7 @@
   </div>
 
   <div class="vblock">
-    <div class="block-label>">EG</div>
+    <div class="block-label">EG</div>
     <div class="hblock" id="EG">
       <div class="control" data-value="{{eg_type}}">
         <span class="label">type</span>
@@ -106,7 +106,7 @@
       </div>
     </div>
 
-    <div class="block-label>">LFO</div>
+    <div class="block-label">LFO</div>
     <div class="hblock" id="LFO">
       <div class="control" data-value="{{lfo_type}}">
         <span class="label">type</span>
