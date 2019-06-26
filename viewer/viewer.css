@@ -12,7 +12,7 @@ html {
   flex-direction: column;
   margin: 0.2em;
   padding: 0.2em;
-}
++}
 .hblock {
   display: flex;
   flex-direction: row;
@@ -27,7 +27,8 @@ html {
   display: flex;
   flex-direction: column;
   border: solid 3px white;
-  background-color: #ff8080;
+  background-color: #ff4040;
+  color: white;
 }
 .label {
   font-size: 0.6em;
@@ -47,9 +48,12 @@ html {
 }
 synth-knob {
   width: 35px; height: 35px;
-  color: #202020;
+  color: black;
   border-color: #b0b0b0;
+  /* flood-color: white; */
+
 }
 synth-knob.shifted {
-  color: red;
+  color: #d00000;
+  flood-color: rgb(255, 204, 188)
 }

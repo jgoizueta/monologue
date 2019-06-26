@@ -6,9 +6,6 @@ const PROPERTIES = {
   'max-pos': ['maxPos', parseFloat],
   'margin': ['margin', parseFloat],
   'ref-pos': ['refPos', parseFloat],
-  'color': ['color', String],
-  'color-background': ['colorBackground', String],
-  'color-dim': ['colorDim', String],
 };
 
 class Knob extends HTMLElement {
@@ -25,9 +22,6 @@ class Knob extends HTMLElement {
           maxPos: 150,
           margin: 4,
           refPos: 90, // positions relative to top
-          color: '#202020',
-          colorBackground: "#FFFFFF",
-          colorDim: '#A0A0A0'
       };
   }
 
@@ -59,18 +53,15 @@ function render(elem) {
   if (!elem.enabled) {
       return;
   }
-  console.log('RENDER');
   // const canvas = elem.getElementsByTagName('canvas')[0];
   const canvas = elem.canvas;
   canvas.width  = parseFloat(window.getComputedStyle(elem).width);
   canvas.height = parseFloat(window.getComputedStyle(elem).height);
 
   const params = elem.params;
-  console.log(params);
 
   const total_width = canvas.width;
   const total_height = canvas.height;
-  console.log('size',total_width, total_height);
   const width = total_width - 2*params.margin;
   const height = total_height - 2*params.margin;
 
@@ -80,18 +71,22 @@ function render(elem) {
   const cx = total_width / 2;
   const cy = total_height / 2;
 
-  // Background
-  // console.log('back', params.colorBackground);
-  // context.fillStyle = params.colorBackground;
-  // context.fillRect(0, 0, total_width, total_height);
+  const style = window.getComputedStyle(elem);
 
-  const color = window.getComputedStyle(elem).color || params.color;
-  const markColor = window.getComputedStyle(elem).borderColor || params.colorDim;
+  context.fillStyle = style.backgroundColor;
+  context.fillRect(0, 0, total_width, total_height);
+
+  const color = style.color;
+  const markColor = style.borderColor;
 
   context.lineWidth = 2;
   context.strokeStyle = color;
   context.beginPath();
   context.arc(cx, cy, r, 0, 2 * Math.PI);
+  if (style.floodColor !== color) {
+    context.fillStyle = style.floodColor;
+    context.fill();
+  }
   context.stroke();
 
   const posAngle = (pos) => {
