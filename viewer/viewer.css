@@ -19,6 +19,7 @@ h1 {
   flex-direction: column;
   margin: 0.2em;
   padding: 0.2em;
+  background-color: #efefef;
 }
 .hblock {
   display: flex;
@@ -40,8 +41,14 @@ h1 {
 .label {
   font-size: 0.8em;
 }
+.setting {
+  font-size: 0.9em;
+}
 .block-label {
   font-size: 0.9em;
+}
+.control {
+  padding: 0.3em;
 }
 .hidden-control {
   color: #909090;
@@ -57,10 +64,10 @@ synth-knob {
   width: 35px; height: 35px;
   color: black;
   border-color: #b0b0b0;
-  /* flood-color: white; */
+  flood-color: #e0e0e0;
 
 }
 synth-knob.shifted {
-  color: #d00000;
+  color: #c00000;
   flood-color: rgb(255, 204, 188)
 }
