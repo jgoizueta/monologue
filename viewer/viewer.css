@@ -3,8 +3,12 @@ html {
   font-size: 0.8em;
 }
 .panel {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
+}
+.program {
+  display: inline-flex;
+  flex-direction: column;
 }
 .vblock {
   border: solid 3px;
