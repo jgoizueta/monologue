@@ -2,7 +2,7 @@
 <H1>{{name | escape}}</H1>
 <div class="panel">
   <div class="vblock" id="vco1">
-    <div class="block-label>VCO1</div>
+    <div class="block-label">VCO1</div>
     <div class="control">
       <span class="label">wave</span>
       <span class="setting">{{vco1_wave | escape}}</span>
@@ -11,14 +11,20 @@
         <span class="label">shape</span>
         <synth-knob value="{{vco1_shape_hr}}" title="{{vco1_shape_hr}}"></synth-knob>
     </div>
+    {% if vco1_pitch_cents != 0 %}
+      <div class="rot-control" data-value="{{vco1_pitch_hr}}">
+        <span class="label">pitch</span>
+        <synth-knob value="{{vco1_pitch_hr}}" title="{{vco1_pitch_cents}}c" class="shifted"></synth-knob>
+      </div>
+    {% else %}
     <div class="hidden-control">
       <span class="label">pitch</span>
-      <span class="setting">{{voc1_pitch_hr}}</span>
-      <span class="setting">{{voc1_pitch_cents}}c</span>
+      <span class="setting">{{vco1_pitch_cents}}c</span>
     </div>
+    {% endif %}
     <div class="hidden-control">
       <span class="label">octave</span>
-      <span class="setting">{{voc1_octave | escape}}</span>
+      <span class="setting">{{vco1_octave | escape}}</span>
     </div>
   </div>
 
