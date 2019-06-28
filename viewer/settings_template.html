@@ -38,11 +38,9 @@
         <span class="label">wave</span>
         <span class="setting">{{vco2_wave | escape}}</span>
       </div>
-      {% if sync_ring != 'OFF' %}
       <div class="control">
-        <span class="setting">{{sync_ring | escape}}</span>
+        <span class="setting">{{sync_ring | escape | replace: "OFF", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}}</span>
       </div>
-      {% endif sync_ring != 'OFF' %}
       <div class="rot-control" data-value="{{vco2_pitch_hr}}">
         <span class="label">pitch</span>
         <synth-knob value="{{vco2_pitch_hr}}" title="{{vco2_pitch_cents}}c"></synth-knob>
