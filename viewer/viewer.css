@@ -38,11 +38,22 @@ h1 {
   background-color: #ff4040;
   color: white;
 }
+.menu-item .setting {
+  background-color: #ad3d3d
+}
 .label {
   font-size: 0.8em;
 }
 .setting {
   font-size: 0.9em;
+  background-color: rgb(99, 97, 97);
+  color: white;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+.hidden-control .setting {
+  background-color: rgb(153, 152, 152);
+  color: #e6e6e6;
 }
 .block-label {
   font-size: 0.9em;
