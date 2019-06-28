@@ -336,12 +336,15 @@ def parse_program(prog)
   end
 
   CONV_PARAMS.each do |(key, offset, bit_pos, bit_len, units)|
-    data[key] = CONVERTERS[units][bits(prog_bytes[offset], bit_pos, bit_len)]
+    value = bits(prog_bytes[offset], bit_pos, bit_len)
+    data[key] = CONVERTERS[units][value]
+    if value != data[key]
+      data[:"#{key}_value"] = value
+    end
   end
 
   data[:lfo_rate_vis] = data[:lfo_bpm_sync] == 'ON' ? data[:lfo_rate_bpm] : data[:lfo_rate_hr]
   data[:eg_int_abs] = data[:eg_int_signed].abs
   data[:lfo_int_abs] = data[:lfo_int_signed].abs
-
   data
 end

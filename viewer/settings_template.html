@@ -33,6 +33,7 @@
       <div class="control">
         <span class="label">octave</span>
         <span class="setting">{{vco2_octave | escape}}</span>
+        <synth-leds value="{{vco2_octave_value}}" min-value="0" max-value="3" vertical title="{{vco2_octave | escape}}"></synth-leds>
       </div>
       <div class="control">
         <span class="label">wave</span>
@@ -154,7 +155,8 @@
     </div>
     <div class="control">
       <span class="label">octave</span>
-      <span class="setting">{{keyb_octave | escape}}</span>
+      <span class="setting">{{keyb_octave}}</span>
+      <synth-leds value="{{keyb_octave}}", min-value="-2", max-value="+2" title="{{keyb_octave}}"></synth-leds>
     </div>
   </div>
 

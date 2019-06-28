@@ -83,3 +83,12 @@ synth-knob.shifted {
   color: #c00000;
   flood-color: rgb(255, 204, 188)
 }
+synth-leds {
+  width: 20px; height: 5px;
+  color: #7c7c7c;
+  flood-color: #ff0000;
+  padding: 1px;
+}
+synth-leds[vertical] {
+  width: 5px; height: 20px;
+}

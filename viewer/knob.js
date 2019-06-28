@@ -1,4 +1,4 @@
-const PROPERTIES = {
+const KNOB_PROPERTIES = {
   'value': ['value', parseFloat],
   'min-value': ['minValue', parseFloat],
   'max-value': ['maxValue', parseFloat],
@@ -10,7 +10,7 @@ const PROPERTIES = {
 
 class Knob extends HTMLElement {
   static get observedAttributes() {
-    return Object.keys(PROPERTIES);
+    return Object.keys(KNOB_PROPERTIES);
   }
 
   static get defaultAttributeValues() {
@@ -41,7 +41,7 @@ class Knob extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    const [prop, conv] = PROPERTIES[name];
+    const [prop, conv] = KNOB_PROPERTIES[name];
     this.params[prop] = conv(newValue);
     render(this);
   }
