@@ -84,28 +84,48 @@ def program_name(prog)
   name
 end
 
+CENTER = 512
+NEG_CENTER_OFFSET = 0.3 # should be 1; for some reaons 0.3 works better
+
 CONVERTERS = {
   cents: ->(value) {
-    # TODO: adjust: this doesn't seem to be really piece-wise linear
-    if value < 4
-      -1200
-    elsif value < 306
-      -1200 + ((value - 4)*(1200-256)/(306.0-4)).round
-    elsif value < 463
-      -256 + ((value - 306)*(256-16)/(463.0-356)).round
-    elsif value < 492
-      -16 + ((value - 463)*(256-16)/(463.0-356)).round
-    elsif value < 532
-      0
-    elsif value < 561
-      ((value - 532)*(16)/(564.0-532)).round
-    elsif value < 718
-      16 + ((value - 564)*(256-16)/(718.0-564)).round
-    elsif value < 1020
-      256 + ((value - 718)*(1200-256)/(1020.0-718)).round
+    v0 = 532 - CENTER
+    c0 = 0
+
+    v1 = 560 - CENTER
+    c1 = 16
+
+    v2b = 663 - CENTER
+    c2b = 97
+
+    v2 = 671 - CENTER
+    c2 = 110
+
+    v3 = 1020 - CENTER
+    c3 = 1200
+
+    aval = value >= CENTER ? value - CENTER : CENTER - NEG_CENTER_OFFSET - value
+
+    c = if aval < v0
+      c0
+    elsif aval < v1
+      # this could be a curve
+      c0 + (c1 - c0).to_f*(aval - v0).to_f/(v1 - v0)
+    elsif aval < v2
+      #  c1 + (c2 - c1).to_f*(aval - v1).to_f/(v2 - v1)
+      c1 + (c2b - c1).to_f*(aval - v1).to_f/(v2b - v1)
+    elsif aval < v3
+      c2 + (c3 - c2).to_f*(aval - v2).to_f/(v3 - v2)
     else
-      1200
+      c3
     end
+
+    c = c.round
+
+    if value < CENTER
+      c = -c
+    end
+    c
   },
   shape1: {
     0 => 'SQR',
