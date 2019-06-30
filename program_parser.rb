@@ -279,7 +279,8 @@ CONVERTERS = {
     2 => '100%'
   },
   program_level: ->(v) { v - 77 - 25 },
-  signed: ->(v) { v - 512 }
+  signed: ->(v) { v - 512 },
+  slider_range: ->(v) { v - 100 }
 }
 
 HR_PARAMS = [
@@ -329,8 +330,9 @@ CONV_PARAMS = [
   [:lfo_bpm_sync, 44, 3, 1, :switch],
   [:cutoff_velocity, 44, 4, 2, :three_pct],
   [:cutoff_keytrack, 44, 6, 2, :three_pct],
-  [:program_level, 45, 0, 7, :program_level],
-  [:amp_velocity, 46, 0, 7, :identity],
+  [:program_level, 45, 0, 8, :program_level],
+  [:amp_velocity, 46, 0, 8, :identity],
+  [:slider_range, 47, 0, 8, :slider_range],
 ]
 
 def bits(byte, pos, len)
