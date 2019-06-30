@@ -88,6 +88,15 @@ def clamp(v, min, max)
   [[v, min].max, max].min
 end
 
+NOTES = [
+  'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
+]
+
+def note_name(midi_note)
+  octave = (midi_note / 12).floor
+  "#{NOTES[midi_note % 12]}#{octave}"
+end
+
 CENTER = 512
 NEG_CENTER_OFFSET = 0.3 # should be 1; for some reaons 0.3 works better
 
@@ -371,6 +380,9 @@ def parse_program(prog)
       data[:"#{key}_value"] = value
     end
   end
+
+  data[:seq_notes] = (96..426).step(22).map{|offset| note_name prog_bytes[offset]}
+  # puts data[:seq_notes].join(' ')
 
   data[:lfo_rate_vis] = data[:lfo_bpm_sync] == 'ON' ? data[:lfo_rate_bpm] : data[:lfo_rate_hr]
   data[:eg_int_abs] = data[:eg_int_signed].abs

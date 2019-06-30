@@ -35,11 +35,17 @@ h1 {
   display: flex;
   flex-direction: column;
   border: solid 3px white;
-  background-color: #ff4040;
+  background-color: #ca0505;
   color: white;
 }
 .menu-item .setting {
-  background-color: #ad3d3d
+  background-color: #990000
+}
+.menu-key {
+  padding: 0.3em;
+  border: solid 3px white;
+  background-color: #ca0505;;
+  color: white
 }
 .label {
   font-size: 0.8em;
