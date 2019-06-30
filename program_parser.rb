@@ -84,6 +84,10 @@ def program_name(prog)
   name
 end
 
+def clamp(v, min, max)
+  [[v, min].max, max].min
+end
+
 CENTER = 512
 NEG_CENTER_OFFSET = 0.3 # should be 1; for some reaons 0.3 works better
 
@@ -280,7 +284,7 @@ CONVERTERS = {
   },
   program_level: ->(v) { v - 77 - 25 },
   signed: ->(v) { v - 512 },
-  slider_range: ->(v) { v - 100 }
+  slider_range: ->(v) { clamp v - 100, -100, 100 }
 }
 
 HR_PARAMS = [
