@@ -93,8 +93,12 @@ NOTES = [
 ]
 
 def note_name(midi_note)
-  octave = (midi_note / 12).floor
-  "#{NOTES[midi_note % 12]}#{octave}"
+  if midi_note == 0
+    '--' # REST
+  else
+    octave = (midi_note / 12).floor - 1
+    "#{NOTES[midi_note % 12]}#{octave}"
+  end
 end
 
 CENTER = 512
