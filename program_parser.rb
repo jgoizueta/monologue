@@ -350,6 +350,7 @@ CONV_PARAMS = [
   [:program_level, 45, 0, 8, :program_level],
   [:amp_velocity, 46, 0, 8, :identity],
   [:slider_range, 47, 0, 8, :slider_range],
+  [:step_length, 54, 0, 8, :identity]
 ]
 
 def bits(byte, pos, len)
@@ -386,6 +387,9 @@ def parse_program(prog)
   end
 
   data[:seq_notes] = (96..426).step(22).map{|offset| note_name prog_bytes[offset]}
+  (data[:step_length]...data[:seq_notes].size).each do |i|
+    data[:seq_notes][i] = ''
+  end
   # puts data[:seq_notes].join(' ')
 
   data[:lfo_rate_vis] = data[:lfo_bpm_sync] == 'ON' ? data[:lfo_rate_bpm] : data[:lfo_rate_hr]
