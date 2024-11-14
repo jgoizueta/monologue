@@ -13,7 +13,7 @@ programs = nil
 file = ARGV.shift
 
 if file == 'midi'
-  prog_nums = ARGV.map{|p| p.to_i}
+  prog_nums = ARGV.map{|p| p.to_i - 1}
 
   UniMIDI::Input.all.select{|i| i.name == 'KORG INC. monologue'}.last.open do |input|
     UniMIDI::Output.all.select{|i| i.name == 'KORG INC. monologue'}.last.open do |output|
@@ -40,7 +40,7 @@ else
     n
   end
 
-  prog_nums = ARGV
+  prog_nums = ARGV.map{|p| p.to_i - 1}
   if prog_nums.size == 0
     # TODO: use FileInformation.xml/PresetInformation.xml?
     prog_files = Dir[File.join(tmp_dir, 'Prog_*.prog_bin')].sort

@@ -4,7 +4,7 @@ By connecting the synt via midi it can be used to view the current parameters:
 ```
 ruby view_monologue.rb midi
 ```
-Or the parameters of program N (0-99) currently on the synth:
+Or the parameters of program N (1-100) currently on the synth:
 
 ```
 ruby view_monologue.rb midi N
@@ -16,7 +16,7 @@ It can be used also with a file created with the Monologue Sound Librarian (`.mo
 ruby view_monologue.rb FILENAME
 ```
 
-And this will show only program N (0-99):
+And this will show only program N (1-100):
 
 ```
 ruby view_monologue.rb FILENAME N
